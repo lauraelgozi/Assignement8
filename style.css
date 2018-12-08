@@ -24,7 +24,7 @@ flex-direction: row;
 }
 .logo{
     width: 40px;
-    height: 25px;
+    height: 30px;
     position: absolute;
     right: 200px;
     top: 10px;
@@ -48,13 +48,6 @@ flex-direction: row;
     position: absolute;
     left:0px;
 }
-.logoDone{
-    position: absolute;
-    bottom: 10px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-}
 .input{
     width: calc(100% - 280px);
     height: 45px;
@@ -75,7 +68,7 @@ flex-direction: row;
 ul {
     list-style-type: none;
 }
-.li{
+.item{
     width: calc(100% - 250px);
     height: 30px;
     padding: 6px 0;
@@ -104,17 +97,17 @@ ul {
     border: 1px solid palevioletred;
     border-radius: 5px;
 }
-.oKdone{
+.done{
     right: 5px;
     color:gray;
     text-decoration: line-through;
-    font-size: 16px;
+    font-size: 13px;
     width: 200px;
     height: 200px;
     position: absolute;
     right: 3px;
 }
-.doneit{
+.listDone{
     width:120px;
     height: 30px;
     list-style: none;
@@ -123,8 +116,8 @@ ul {
     position: relative;
 }
 .undo{
-    width: 17px;
-    height: 17px;
+    width: 12px;
+    height: 12px;
     position: absolute;
     left: 10px;
     top:12px;

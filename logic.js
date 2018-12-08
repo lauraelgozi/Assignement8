@@ -1,7 +1,8 @@
 class App extends React.Component {
     render() {
         return (
-            <div><Header />
+            <div>
+                <Header />
                 <Todo />
             </div>
         );
@@ -14,7 +15,7 @@ class Header extends React.Component {
                 <div className="navBar">
                     <div className="title">My toDo List</div>
                     <img alt="list" className="logo" src="https://image.flaticon.com/icons/svg/230/230318.svg"></img>
-                    <img className="user" src="https://image.flaticon.com/icons/svg/149/149452.svg"></img>
+                    <img className="user" src="https://image.flaticon.com/icons/svg/145/145866.svg"></img>
                 </div>
                 <div className="navBarDone">
                 </div>
@@ -28,13 +29,12 @@ class Todo extends React.Component {
         this.state = {
             myTask: [],
             listDone: [],
-            className:"doneit"
         }
         this.addTasks = this.addTasks.bind(this)
         this.deleteTask = this.deleteTask.bind(this)
-        this.isAppear = this.isAppear.bind(this)
+        this.isDone = this.isDone.bind(this)
         this.deleteTaskDone = this.deleteTaskDone.bind(this)
-        this.undo =this.undo.bind(this)
+        this.undo = this.undo.bind(this)
     }
     addTasks() {
         var activity = this.textInput.value;
@@ -51,11 +51,11 @@ class Todo extends React.Component {
         }
         this.setState({ myTask: array });
     }
-    isAppear(event) {
-        var activity = event.target.parentElement.textContent;
+    isDone(e) {
+        var activity = e.target.parentElement.textContent;
         var array = this.state.listDone
         array.push(activity);
-        this.deleteTask(event.target.parentElement.textContent)
+        this.deleteTask(e.target.parentElement.textContent)
         this.setState({ listDone: array })
     }
     deleteTaskDone(e) {
@@ -64,23 +64,23 @@ class Todo extends React.Component {
 
     }
     undo(e) {
-            var item = e.target.parentElement.textContent;
-            var array = this.state.myTask
-            array.push(item);
-            this.setState({ myTask: array })
-            this.deleteTaskDone(e)
-        
+        var item = e.target.parentElement.textContent;
+        var array = this.state.myTask
+        array.push(item);
+        this.setState({ myTask: array })
+        this.deleteTaskDone(e)
+
     }
     render() {
-        var list = this.state.myTask.map(x => <li key={`item${x}`} className="li">
+        var list = this.state.myTask.map(x => <li key={`item${x}`} className="item">
             <div>
                 {x}
-                <div className="didIt" onClick={this.isAppear}></div>
+                <div className="didIt" onClick={this.isDone}></div>
                 <img className="delete" src="https://image.flaticon.com/icons/svg/1214/1214594.svg" onClick={this.deleteTask.bind(this, x)} ></img>
             </div>
         </li>)
-        var list2 = this.state.listDone.map(z => <li key={`item${z}`} >
-            <div className="doneit">
+        var listDone = this.state.listDone.map(z => <li key={`item${z}`} >
+            <div className="listDone">
                 {z}
                 <img className="undo" src="https://image.flaticon.com/icons/svg/0/340.svg" onClick={this.undo}></img>
                 <img className="delete" src="https://image.flaticon.com/icons/svg/1214/1214594.svg" onClick={this.deleteTaskDone}></img>
@@ -88,17 +88,14 @@ class Todo extends React.Component {
         </li>)
         return (
             <div className="todo">
-                <div className="titleTodo">
+                <div>
                     <input ref={(input) => { this.textInput = input; }} className="input" placeholder="Add a Task"></input>
-                    <button className="btn" onClick={this.addTasks} >Enter</button>
+                    <button className="btn" onClick={this.addTasks} >Enter </button>
                     <ul>
                         {list}
                     </ul>
-                    <div className="done">
-                        <div className="titleDone">
-                        </div>
-                        <img alt="logoDone" className="logoDone" src="https://image.flaticon.com/icons/svg/265/265706.svg"></img>
-                        <ul className="oKdone" > {list2}
+                    <div>
+                        <ul className="done" > {listDone}
                         </ul>
                     </div>
                 </div>
